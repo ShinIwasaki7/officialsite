@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+  <h3>「{{ object.title }}」詳細画面</h3>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+<div class="alert alert-secondary" role="alert">
+  <p>参加人数：{{ object.participants_num }}人</p>
+  <p>日時：{{ object.date }}</p>
+  <p>説明：{{ object.context }}</p>
+</div>
+
+{% endblock content  %}

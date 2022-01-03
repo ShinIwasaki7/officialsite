@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>本当に削除してもよろしいですか？</p>
+<form method='POST'>{% csrf_token %}
+<input type='submit' value='このユーザーを削除する'>
+</form>
+
+{% endblock content %}

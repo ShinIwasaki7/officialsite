@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>廃人会４ ホームページ</title>
+  </head>
+  <body>
+    {% block header %}
+    {% endblock header %}
+
+    <a class="btn btn-primary" href="{% url 'main' %}" role="button">Top</a>
+    <a class="btn btn-primary" href="{% url 'clanbattle' %}" role="button">クラン対戦情報</a>
+    <a class="btn btn-primary" href="{% url 'clantournament' %}" role="button">クラン内大会情報</a>
+    <a class="btn btn-primary" href="#" role="button">交流戦情報</a>
+
+    {% block content %}
+    {% endblock content %}
+  </body>
+</html>

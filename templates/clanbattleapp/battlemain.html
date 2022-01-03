@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+  <h3>クラン対戦情報一覧</h3>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<p>ログインしています</p>
+<p>{{ year }}年{{ month }}月{{ day }}日</p>
+
+{% else %}
+<p>ログインしていないとこのページは見ることができません</p>
+<a class="btn btn-success" href="{% url 'login' %}" role="button">ログイン画面へ</a>
+{% endif %}
+
+{% endblock content  %}

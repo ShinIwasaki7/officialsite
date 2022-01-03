@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<form method='POST' enctype="multipart/form-data">{% csrf_token %}
+<p>大会名:<input type='text' name='title'></p>
+<p>説明:<input type='text' name='context'></p>
+<p>参加人数:<input type='number' name='context' min='1' max='50'></p>
+<p>大会日:<input type='date' name='context'></p>
+
+<input type='submit' value='上記の内容で追加する'>
+</form>
+{% else %}
+<p>ログインしないと編集することはできません</p>
+<a class="btn btn-success" href="{% url 'login' %}" role="button">ログインページへ</a>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+  <h3>クラン内大会情報</h3>
+</div>
+{% endblock header %}
+
+{% block content %}
+<p><a class="btn btn-success" href="{% url 'tournamentcreate' %}" role="button">トーナメント追加</a></p>
+<container>
+  <h3>既に開催された大会</h3>
+  {% for item in holded %}
+  <div class="alert alert-success" role="alert">
+    <p><h4>大会名：{{ item.title }}</h4></p>
+    <a class="btn btn-warning" href="{% url 'tournamentdetail' item.pk %}" role="button">詳細</a>
+  </div>
+  {% endfor %}
+</container>
+
+
+<container>
+  <h3>これから開催予定の大会</h3>
+  {% for item in willhold %}
+  <div class="alert alert-primary" role="alert">
+    <p><h4>大会名：{{ item.title }}</h4></p>
+    <a class="btn btn-warning" href="{% url 'tournamentdetail' item.pk %}" role="button">詳細</a>
+    <a class="btn btn-warning" href="{% url 'tournamentupdate' item.pk %}" role="button">編集</a>
+  </div>
+  {% endfor %}
+</container>
+
+{% endblock content  %}

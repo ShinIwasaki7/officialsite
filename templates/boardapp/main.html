@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+  <h3>メイン画面</h3>
+</div>
+{% endblock header %}
+
+{% block content %}
+<div>
+  {% if user.is_authenticated %}
+  <a class="btn btn-danger" href="#" role="button">マイページ</a>
+  {% endif %}
+
+</div>
+<div><p></p></div>
+
+{% if not user.is_authenticated %}
+  <div class="background right">
+    <a class="btn btn-success" href="{% url 'login' %}" role="button">ログインする</a>
+    <a class="btn btn-danger" href="{% url 'signup' %}" role="button">新規登録する</a>
+  </div>
+{% else %}
+  <div class="background right">
+    <a class="btn btn-secondary" href="{% url 'logout' %}" role="button">ログアウトする</a>
+    <a class="btn btn-success" href="{% url 'createclanuser' %}" role="button">メンバーを追加する</a>
+  </div>
+{% endif %}
+
+
+<p><h2>メンバー</h2></p>
+
+<form method="POST" action="">
+  <input type="submit" value="ソートする">
+  {% for field in form %}
+  {{ field }}
+  {% endfor %}
+  {% csrf_token %}
+</form>
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">名前</th>
+        <th scope="col">最多トロフィー</th>
+        <th scope="col">役職</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in object_list %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ item.username }}</td>
+        <td>{{ item.maxtrophy }}</td>
+        <td>{{ item.position }}</td>
+        {% if user.is_authenticated %}
+        <th><a href="{% url 'deleteclanuser' item.pk %}">削除</a></th>
+        <th><a href="{% url 'updateclanuser' item.pk %}">編集</a></th>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content  %}
+
